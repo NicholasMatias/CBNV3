@@ -18,10 +18,13 @@ const Title = styled(motion.h2)`
 `;
 
 const ExperienceGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 `;
 
 const ExperienceCard = styled(motion.div)`
@@ -33,6 +36,8 @@ const ExperienceCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 500px;
+  height: 600px;
 `;
 
 const ExperienceIcon = styled.div`
@@ -55,9 +60,26 @@ const Duration = styled.p`
   color: ${({ theme }) => theme.accent};
 `;
 
-const Description = styled.p`
+const Description = styled.ul`
   color: ${({ theme }) => theme.text};
   line-height: 1.6;
+  padding-left: 1.5rem;
+  margin: 0;
+`;
+
+const BulletPoint = styled.li`
+  margin-bottom: 0.5rem;
+  position: relative;
+  list-style-type: none;
+
+  &::before {
+    content: "•";
+    color: ${({ theme }) => theme.primary};
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
 `;
 
 const Experience = () => {
@@ -69,15 +91,28 @@ const Experience = () => {
   const experiences = [
     {
       company: 'Meta',
+      position: 'Incoming Software Engineering Intern',
+      duration: 'May 2025 - August 2025',
+      description: [],
+    },
+    {
+      company: 'Meta',
       position: 'Software Engineering Intern',
       duration: 'June 2024 - August 2024',
-      description: 'Developed full-stack app InterviewMe simulating behavioral interviews using Whisper3 (speech-to-text), Llama3 (LLM), and Deepgram\'s text-to-speech API. Added features like question up-voting, company tags, and search/sort, improving engagement by 17%. Built feedback system using fine-tuned classifiers and cosine similarity, improving STAR scores by 7.34%.',
+      description: [
+        'Developed full-stack app InterviewMe simulating behavioral interviews using Whisper3 (speech-to-text), Llama3 (LLM), and Deepgram\'s text-to-speech API',
+        'Added features like question up-voting, company tags, and search/sort, improving engagement by 17%',
+        'Built feedback system using fine-tuned classifiers and cosine similarity, improving STAR scores by 7.34%'
+      ],
     },
     {
       company: 'Lavner Education',
       position: 'IT Intern',
       duration: 'June 2023 - August 2023',
-      description: 'Mentored high schoolers building 7+ full-stack apps and games. Delivered curriculum on HTML, CSS, Python, C++, Java, JavaScript.',
+      description: [
+        'Mentored high schoolers building 7+ full-stack apps and games',
+        'Delivered curriculum on HTML, CSS, Python, C++, Java, JavaScript'
+      ],
     },
   ];
 
@@ -105,7 +140,11 @@ const Experience = () => {
             <CompanyName>{exp.company}</CompanyName>
             <Position>{exp.position}</Position>
             <Duration>{exp.duration}</Duration>
-            <Description>{exp.description}</Description>
+            <Description>
+              {exp.description.map((point, idx) => (
+                <BulletPoint key={idx}>{point}</BulletPoint>
+              ))}
+            </Description>
           </ExperienceCard>
         ))}
       </ExperienceGrid>
