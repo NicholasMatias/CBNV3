@@ -68,6 +68,49 @@ const Description = styled(motion.p)`
   margin-bottom: 2rem;
 `;
 
+const ResumeButton = styled(motion.a)`
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.background};
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: 2px solid ${({ theme }) => theme.primary};
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #FFD700, #DAA520, #FFD700);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
 const Intro = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -109,6 +152,16 @@ const Intro = () => {
             I love building innovative solutions that solve real-world problems and make a positive impact. 
             With expertise in full-stack development and experience in AI, I'm always eager to take on new challenges and learn new technologies.
           </Description>
+          <ResumeButton
+            href="NRM_Resume_2025_NG.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            View My Resume
+          </ResumeButton>
         </TextContent>
       </IntroContent>
     </IntroSection>
