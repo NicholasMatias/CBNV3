@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const FooterContent = styled.footer`
   background: ${({ theme }) => theme.footer};
@@ -131,7 +131,7 @@ const Footer = () => {
         <Email href="mailto:n-r-matias@outlook.com">
           <FaEnvelope /> n-r-matias@outlook.com
         </Email>
-        <Phone>
+        <Phone >
           <FaPhone /> 832-745-2667
         </Phone>
       </ContactInfo>
@@ -141,6 +141,9 @@ const Footer = () => {
         </SocialLink>
         <SocialLink href="https://linkedin.com/in/nicholasmatias" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
+        </SocialLink>
+        <SocialLink href="https://www.instagram.com/nicholasrmatias" target="_blank" rel="noopener noreferrer">
+          <FaInstagram />
         </SocialLink>
       </SocialLinks>
       <Copyright>
