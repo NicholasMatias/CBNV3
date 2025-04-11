@@ -1,14 +1,25 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
-import { FaJava, FaPython, FaJs, FaReact, FaNodeJs, FaHtml5, FaCss3, FaDatabase, FaGit } from 'react-icons/fa';
-import { SiCplusplus, SiTensorflow, SiPytorch } from 'react-icons/si';
+import { 
+  FaReact, FaNode, FaGitAlt, FaPython, FaJava, FaHtml5, 
+  FaCss3Alt, FaDocker, FaAws, FaDatabase, FaGithub, FaFigma
+} from 'react-icons/fa';
+import { 
+  SiJavascript, SiTypescript, SiMongodb, SiPostgresql, 
+  SiPytorch, SiExpress, SiFirebase, SiTensorflow, SiScikitlearn,
+  SiCplusplus, SiNumpy, SiPandas, SiPrisma,
+  SiLatex, SiVite
+} from 'react-icons/si';
 
 const SkillsSection = styled.section`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
 `;
 
 const Title = styled(motion.h2)`
@@ -18,63 +29,65 @@ const Title = styled(motion.h2)`
   color: ${({ theme }) => theme.primary};
 `;
 
-const SkillsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+const CarouselContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  padding: 2rem;
+`;
+
+const CarouselRow = styled.div`
+  display: flex;
+  width: 200%;
+  animation: scroll ${props => props.$duration}s linear infinite;
+  animation-direction: ${props => props.$reverse ? 'reverse' : 'normal'};
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  &:hover {
+    animation-play-state: paused;
+  }
 `;
 
 const SkillCard = styled(motion.div)`
-  background: ${({ theme }) => theme.card};
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  padding: 1.5rem;
+  margin: 0 1rem;
+  background: ${({ theme }) => theme.card};
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.border};
+  min-width: 120px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+  }
 `;
 
 const SkillIcon = styled.div`
   font-size: 2.5rem;
-  color: ${({ theme }) => theme.primary};
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
 `;
 
-const SkillName = styled.h3`
-  font-size: 1.2rem;
+const SkillName = styled.p`
+  font-size: 1rem;
+  text-align: center;
   color: ${({ theme }) => theme.text};
 `;
-
-const SkillLevel = styled.div`
-  width: 100%;
-  height: 8px;
-  background: ${({ theme }) => theme.background};
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-const SkillLevelBar = styled(motion.div)`
-  height: 100%;
-  background: ${({ theme }) => theme.primary};
-  border-radius: 4px;
-`;
-
-const skills = [
-  { name: 'Java', icon: <FaJava />, level: 90 },
-  { name: 'Python', icon: <FaPython />, level: 90 },
-  { name: 'C++', icon: <SiCplusplus />, level: 85 },
-  { name: 'JavaScript', icon: <FaJs />, level: 85 },
-  { name: 'React', icon: <FaReact />, level: 85 },
-  { name: 'Node.js', icon: <FaNodeJs />, level: 80 },
-  { name: 'HTML5', icon: <FaHtml5 />, level: 90 },
-  { name: 'CSS3', icon: <FaCss3 />, level: 85 },
-  { name: 'SQL', icon: <FaDatabase />, level: 80 },
-  { name: 'TensorFlow', icon: <SiTensorflow />, level: 75 },
-  { name: 'PyTorch', icon: <SiPytorch />, level: 70 },
-  { name: 'Git', icon: <FaGit />, level: 85 },
-];
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -82,36 +95,77 @@ const Skills = () => {
     threshold: 0.1,
   });
 
+  const row1Skills = [
+    { name: 'React', icon: <FaReact /> },
+    { name: 'Node.js', icon: <FaNode /> },
+    { name: 'JavaScript', icon: <SiJavascript /> },
+    { name: 'Python', icon: <FaPython /> },
+    { name: 'Java', icon: <FaJava /> },
+    { name: 'Git', icon: <FaGitAlt /> },
+    { name: 'HTML', icon: <FaHtml5 /> },
+    { name: 'CSS', icon: <FaCss3Alt /> },
+    { name: 'Docker', icon: <FaDocker /> },
+    { name: 'C++', icon: <SiCplusplus /> },
+    { name: 'NumPy', icon: <SiNumpy /> },
+    { name: 'Pandas', icon: <SiPandas /> },
+  ];
+
+  const row2Skills = [
+    { name: 'MongoDB Atlas', icon: <SiMongodb /> },
+    { name: 'PostgreSQL', icon: <SiPostgresql /> },
+    { name: 'PyTorch', icon: <SiPytorch /> },
+    { name: 'Express', icon: <SiExpress /> },
+    { name: 'Firebase', icon: <SiFirebase /> },
+    { name: 'TensorFlow', icon: <SiTensorflow /> },
+    { name: 'SQL', icon: <FaDatabase /> },
+    { name: 'Figma', icon: <FaFigma /> },
+    { name: 'Prisma', icon: <SiPrisma /> },
+    { name: 'LaTeX', icon: <SiLatex /> },
+    { name: 'Vite', icon: <SiVite /> },
+    { name: 'GitHub', icon: <FaGithub /> },
+  ];
+
+  // Double the skills arrays for seamless looping
+  const doubledRow1 = [...row1Skills, ...row1Skills];
+  const doubledRow2 = [...row2Skills, ...row2Skills];
+
   return (
-    <SkillsSection id="skills">
+    <SkillsSection id="skills" ref={ref}>
       <Title
-        ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
       >
         Skills
       </Title>
-      <SkillsGrid>
-        {skills.map((skill, index) => (
-          <SkillCard
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <SkillIcon>{skill.icon}</SkillIcon>
-            <SkillName>{skill.name}</SkillName>
-            <SkillLevel>
-              <SkillLevelBar
-                initial={{ width: 0 }}
-                animate={inView ? { width: `${skill.level}%` } : {}}
-                transition={{ duration: 1, delay: index * 0.1 }}
-              />
-            </SkillLevel>
-          </SkillCard>
-        ))}
-      </SkillsGrid>
+      <CarouselContainer>
+        <CarouselRow $duration={30}>
+          {doubledRow1.map((skill, index) => (
+            <SkillCard
+              key={`${skill.name}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <SkillIcon>{skill.icon}</SkillIcon>
+              <SkillName>{skill.name}</SkillName>
+            </SkillCard>
+          ))}
+        </CarouselRow>
+        <CarouselRow $duration={25} $reverse>
+          {doubledRow2.map((skill, index) => (
+            <SkillCard
+              key={`${skill.name}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <SkillIcon>{skill.icon}</SkillIcon>
+              <SkillName>{skill.name}</SkillName>
+            </SkillCard>
+          ))}
+        </CarouselRow>
+      </CarouselContainer>
     </SkillsSection>
   );
 };

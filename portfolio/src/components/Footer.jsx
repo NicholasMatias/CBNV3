@@ -147,7 +147,7 @@ const Footer = () => {
         </SocialLink>
       </SocialLinks>
       <Copyright>
-        © {new Date().getFullYear()} Nicholas Matias. All rights reserved.
+        © 2023 CBN, Creations by Nick. All rights reserved.
       </Copyright>
     </FooterContent>
   );
