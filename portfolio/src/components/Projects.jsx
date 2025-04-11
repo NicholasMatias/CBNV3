@@ -100,7 +100,7 @@ const ImageOverlay = styled.div`
 `;
 
 const OverlayTitle = styled.h3`
-  color: white;
+  color: ${({ theme }) => theme.primary};
   font-size: 1.8rem;
   margin-bottom: 1rem;
   transform: translateY(-20px);
@@ -109,7 +109,7 @@ const OverlayTitle = styled.h3`
 `;
 
 const OverlayDescription = styled.p`
-  color: white;
+  color: ${({ theme }) => theme.primary};
   font-size: 1rem;
   margin-bottom: 1.5rem;
   transform: translateY(20px);
@@ -134,6 +134,7 @@ const OverlayButton = styled.a`
     background: ${({ theme }) => theme.mode === 'dark' ? 'rgba(0,0,0,0.9)' : 'rgba(255,255,255,0.9)'};
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    
   }
 `;
 
