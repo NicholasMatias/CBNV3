@@ -4,10 +4,13 @@ import { lightTheme, darkTheme } from './styles/theme';
 import { GlobalStyles } from './styles/GlobalStyles';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
+import Intro from './components/Intro';
+import Education from './components/Education';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Leadership from './components/Leadership';
 import Skills from './components/Skills';
-import Education from './components/Education';
+import Hobbies from './components/Hobbies';
 import Footer from './components/Footer';
 
 function App() {
@@ -23,10 +26,13 @@ function App() {
       <AnimatedBackground />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
+        <Intro />
+        <Education />
         <Experience />
         <Projects />
+        <Leadership />
         <Skills />
-        <Education />
+        <Hobbies />
       </main>
       <Footer />
     </ThemeProvider>

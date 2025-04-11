@@ -16,12 +16,20 @@ const Nav = styled.nav`
   padding: 0 2rem;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 `;
 
 const Logo = styled(motion.div)`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.primary};
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+`;
+
+const LogoImage = styled.img`
+  height: 110px;
+  width: auto;
+  transition: all 0.3s ease;
 `;
 
 const NavLinks = styled.div`
@@ -76,19 +84,29 @@ const Navbar = ({ theme, toggleTheme }) => {
   }, []);
 
   return (
-    <Nav style={{ background: scrolled ? 'rgba(0, 0, 0, 0.1)' : 'transparent' }}>
+    <Nav style={{ 
+      background: scrolled 
+        ? `${theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)'}` 
+        : 'transparent' 
+    }}>
       <Logo
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Nicholas Matias
+        <LogoImage 
+          src="/CBN_Transparent.png" 
+          alt="CBN Logo"
+        />
       </Logo>
       <NavLinks>
+        <NavLink href="#intro">Intro</NavLink>
+        <NavLink href="#education">Education</NavLink>
         <NavLink href="#experience">Experience</NavLink>
         <NavLink href="#projects">Projects</NavLink>
+        <NavLink href="#leadership">Leadership</NavLink>
         <NavLink href="#skills">Skills</NavLink>
-        <NavLink href="#education">Education</NavLink>
+        <NavLink href="#hobbies">Hobbies</NavLink>
         <ThemeToggle
           onClick={toggleTheme}
           whileHover={{ scale: 1.1 }}

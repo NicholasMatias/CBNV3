@@ -60,6 +60,16 @@ const Description = styled.p`
   line-height: 1.6;
 `;
 
+const RelevantCoursework = styled.p`
+  color: ${({ theme }) => theme.text};
+  line-height: 1.6;
+`;
+
+const Affiliations = styled.p`
+  color: ${({ theme }) => theme.text};
+  line-height: 1.6;
+`;
+
 const Education = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -72,12 +82,16 @@ const Education = () => {
       degree: 'M.S. in Artificial Intelligence (Fast-Track Program)',
       duration: 'August 2026 - May 2027',
       description: 'Fast-track program in Artificial Intelligence.',
+      relevantCoursework: '',
+      affiliations: '',
     },
     {
       school: 'Texas A&M University',
       degree: 'B.S. in Computer Science, Minor in Mathematics',
       duration: 'August 2022 - May 2026',
-      description: 'GPA: 3.736. Relevant Coursework: Data Structures and Algorithms, Computer Organization, Programming Languages, Program Design and Concepts, Discrete Structures Computing, Foundations of Software Engineering, Design and Analysis of Algorithms, Computer Systems.',
+      description: 'GPA: 3.736',
+      relevantCoursework: 'Relevant Coursework: Data Structures and Algorithms, Program Design and Concepts, Discrete Structures Computing, Software Engineering, Design and Analysis of Algorithms, Computer Systems, Machine Learning',
+      affiliations: 'Affiliations: Society of Hispanic Professional Engineers (SHPE), ColorStack, AI4ALL, Hispanic Scholarship Fund (HSF), Aggie Camping Club, Aggie Coding Club (ACC)',
     },
   ];
 
@@ -106,6 +120,8 @@ const Education = () => {
             <Degree>{edu.degree}</Degree>
             <Duration>{edu.duration}</Duration>
             <Description>{edu.description}</Description>
+            {edu.relevantCoursework && (<RelevantCoursework>{edu.relevantCoursework}</RelevantCoursework>)}
+            {edu.affiliations && (<Affiliations>{edu.affiliations}</Affiliations>)}
           </EducationCard>
         ))}
       </EducationGrid>
