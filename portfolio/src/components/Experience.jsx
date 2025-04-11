@@ -37,7 +37,7 @@ const ExperienceCard = styled(motion.div)`
   flex-direction: column;
   gap: 1rem;
   width: 500px;
-  height: 600px;
+  height: 650px;
 `;
 
 const ExperienceIcon = styled.div`
@@ -100,9 +100,9 @@ const Experience = () => {
       position: 'Software Engineering Intern',
       duration: 'June 2024 - August 2024',
       description: [
-        'Developed full-stack app InterviewMe simulating behavioral interviews using Whisper3 (speech-to-text), Llama3 (LLM), and Deepgram\'s text-to-speech API',
-        'Added features like question up-voting, company tags, and search/sort, improving engagement by 17%',
-        'Built feedback system using fine-tuned classifiers and cosine similarity, improving STAR scores by 7.34%'
+        'Developed a full-stack web application, InterviewMe, capable of simulating a real-life behavioral interview through utilizing Whisper3 (speech-to-text), Llama3 (LLM), and Deepgram\'s text-to-speech API',
+        'Implemented user-centric features including question up-voting, company tag management, and search/sort functionality, increasing user engagement by 17% and streamlining interview preparation',
+        'Built feedback system using fine-tuned text classifiers to evaluate the user\'s response on the STAR method and cosine similarity for quetion-response relevance, improving STAR scores by 7.34%'
       ],
     },
     {
@@ -110,8 +110,8 @@ const Experience = () => {
       position: 'IT Intern',
       duration: 'June 2023 - August 2023',
       description: [
-        'Mentored high schoolers building 7+ full-stack apps and games',
-        'Delivered curriculum on HTML, CSS, Python, C++, Java, JavaScript'
+        'Guided a team of high schoolers through the development of 7+ full stack projects including websites, applications, and various games thus developing the students’ technical skills',
+        'Designed and delivered comprehensive curriculum covering HTML, CSS, Python, C++, Java, and JavaScript, increasing project completion rates and improving code quality'
       ],
     },
   ];
