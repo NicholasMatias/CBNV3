@@ -35,11 +35,13 @@ const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  overflow: hidden;
 `;
 
 const CarouselRow = styled.div`
   display: flex;
-  width: 200%;
+  gap: 2rem;
+  padding: 1rem 0;
   animation: scroll ${props => props.$duration}s linear infinite;
   animation-direction: ${props => props.$reverse ? 'reverse' : 'normal'};
 
@@ -48,7 +50,7 @@ const CarouselRow = styled.div`
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(calc(-50% - 1rem));
     }
   }
 
@@ -63,11 +65,11 @@ const SkillCard = styled(motion.div)`
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  margin: 0 1rem;
   background: ${({ theme }) => theme.card};
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.border};
   min-width: 120px;
+  flex-shrink: 0;
   transition: all 0.3s ease;
 
   &:hover {
@@ -139,7 +141,7 @@ const Skills = () => {
         Skills
       </Title>
       <CarouselContainer>
-        <CarouselRow $duration={30}>
+        <CarouselRow $duration={40}>
           {doubledRow1.map((skill, index) => (
             <SkillCard
               key={`${skill.name}-${index}`}
@@ -152,7 +154,7 @@ const Skills = () => {
             </SkillCard>
           ))}
         </CarouselRow>
-        <CarouselRow $duration={25} $reverse>
+        <CarouselRow $duration={35} $reverse>
           {doubledRow2.map((skill, index) => (
             <SkillCard
               key={`${skill.name}-${index}`}
