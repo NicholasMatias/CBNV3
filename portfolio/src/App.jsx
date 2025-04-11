@@ -14,7 +14,7 @@ import Hobbies from './components/Hobbies';
 import Footer from './components/Footer';
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
