@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import { FaBriefcase } from 'react-icons/fa';
+import { SectionContainer } from '../styles/shared';
 
-const ExperienceSection = styled.section`
-  min-height: 100vh;
+const ExperienceSection = styled(SectionContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,7 +110,7 @@ const Experience = () => {
       position: 'IT Intern',
       duration: 'June 2023 - August 2023',
       description: [
-        'Guided a team of high schoolers through the development of 7+ full stack projects including websites, applications, and various games thus developing the students’ technical skills',
+        'Guided a team of high schoolers through the development of 7+ full stack projects including websites, applications, and various games thus developing the students\' technical skills',
         'Designed and delivered comprehensive curriculum covering HTML, CSS, Python, C++, Java, and JavaScript, increasing project completion rates and improving code quality'
       ],
     },

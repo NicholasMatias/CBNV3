@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { SectionContainer } from '../styles/shared';
 
-const ProjectsSection = styled.section`
-  min-height: 100vh;
+const ProjectsSection = styled(SectionContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;

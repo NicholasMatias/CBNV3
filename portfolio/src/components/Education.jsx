@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import { FaGraduationCap } from 'react-icons/fa';
+import { SectionContainer } from '../styles/shared';
 
-const EducationSection = styled.section`
-  min-height: 100vh;
+const EducationSection = styled(SectionContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;

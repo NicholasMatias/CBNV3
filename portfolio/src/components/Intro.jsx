@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
+import { SectionContainer } from '../styles/shared';
 
-const IntroSection = styled.section`
-  min-height: 100vh;
+const IntroSection = styled(SectionContainer)`
   display: flex;
   align-items: center;
   justify-content: center;
