@@ -1,13 +1,19 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
-import { FaGamepad, FaBook, FaMusic, FaCamera, FaPlane } from 'react-icons/fa';
+import { 
+  FaBasketballBall, FaFutbol, FaFootballBall, FaDumbbell, 
+  FaRunning, FaChess, FaFilm
+} from 'react-icons/fa';
+import { GiMuscleUp } from 'react-icons/gi';
 
 const HobbiesSection = styled.section`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
 `;
 
 const Title = styled(motion.h2)`
@@ -19,66 +25,92 @@ const Title = styled(motion.h2)`
 
 const HobbiesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const HobbyCard = styled(motion.div)`
+  position: relative;
   background: ${({ theme }) => theme.card};
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  text-align: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'linear-gradient(45deg, rgba(255,215,0,0.1), rgba(218,165,32,0.1))'
+        : 'linear-gradient(45deg, rgba(255,215,0,0.05), rgba(218,165,32,0.05))'
+    };
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    &::before {
+      opacity: 1;
+    }
+
+    ${({ theme }) => theme.mode === 'dark' && `
+      box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
+    `}
+  }
 `;
 
 const HobbyIcon = styled.div`
-  font-size: 2.5rem;
-  color: ${({ theme }) => theme.primary};
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+  transition: transform 0.3s ease;
+
+  ${HobbyCard}:hover & {
+    transform: scale(1.1);
+  }
 `;
 
-const HobbyName = styled.h3`
+const HobbyName = styled.p`
   font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
   color: ${({ theme }) => theme.text};
-`;
+  transition: transform 0.3s ease;
 
-const HobbyDescription = styled.p`
-  color: ${({ theme }) => theme.text};
-  line-height: 1.6;
+  ${HobbyCard}:hover & {
+    transform: scale(1.05);
+  }
 `;
-
-const hobbies = [
-  {
-    name: 'Gaming',
-    icon: <FaGamepad />,
-    description: 'I enjoy playing video games in my free time, especially strategy and RPG games.',
-  },
-  {
-    name: 'Reading',
-    icon: <FaBook />,
-    description: 'I love reading books about technology, science fiction, and personal development.',
-  },
-  {
-    name: 'Music',
-    icon: <FaMusic />,
-    description: 'I play guitar and enjoy listening to various genres of music.',
-  },
-  {
-    name: 'Photography',
-    icon: <FaCamera />,
-    description: 'I like capturing moments and exploring different photography techniques.',
-  },
-  {
-    name: 'Travel',
-    icon: <FaPlane />,
-    description: 'I enjoy exploring new places and experiencing different cultures.',
-  },
-];
 
 const Hobbies = () => {
   const [ref, inView] = useInView({
@@ -86,27 +118,60 @@ const Hobbies = () => {
     threshold: 0.1,
   });
 
+  const hobbies = [
+    { name: 'Basketball', icon: <FaBasketballBall /> },
+    { name: 'Soccer', icon: <FaFutbol /> },
+    { name: 'Football', icon: <FaFootballBall /> },
+    { name: 'Weightlifting', icon: <FaDumbbell /> },
+    { name: 'Running', icon: <FaRunning /> },
+    { name: 'Calisthenics', icon: <GiMuscleUp /> },
+    { name: 'Chess', icon: <FaChess /> },
+    { name: 'Movies & Shows', icon: <FaFilm /> },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <HobbiesSection id="hobbies">
+    <HobbiesSection id="hobbies" ref={ref}>
       <Title
-        ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
       >
-        Hobbies & Interests
+        Hobbies
       </Title>
-      <HobbiesGrid>
+      <HobbiesGrid
+        as={motion.div}
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
         {hobbies.map((hobby, index) => (
           <HobbyCard
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            key={hobby.name}
+            variants={itemVariants}
           >
             <HobbyIcon>{hobby.icon}</HobbyIcon>
             <HobbyName>{hobby.name}</HobbyName>
-            <HobbyDescription>{hobby.description}</HobbyDescription>
           </HobbyCard>
         ))}
       </HobbiesGrid>
