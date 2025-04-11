@@ -192,10 +192,31 @@ const ProjectLink = styled.a`
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 2px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'linear-gradient(to right, #FFD700, #B8860B)'
+        : 'linear-gradient(to right, #FFDF00, #DAA520)'
+    };
+    transition: width 0.3s ease;
+  }
 
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+
+    &::after {
+      width: 100%;
+    }
   }
 `;
 

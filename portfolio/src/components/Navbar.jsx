@@ -42,24 +42,35 @@ const NavLinks = styled.div`
   }
 `;
 
-const NavLink = styled(motion.a)`
+const NavLink = styled.a`
   color: ${({ theme }) => theme.text};
-  font-weight: 500;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
   position: relative;
+  padding-bottom: 2px;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 0;
     height: 2px;
-    background: ${({ theme }) => theme.primary};
+    bottom: 0;
+    left: 0;
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'linear-gradient(to right, #FFD700, #B8860B)'
+        : 'linear-gradient(to right, #FFDF00, #DAA520)'
+    };
     transition: width 0.3s ease;
   }
 
-  &:hover::after {
-    width: 100%;
+  &:hover {
+    color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+
+    &::after {
+      width: 100%;
+    }
   }
 `;
 

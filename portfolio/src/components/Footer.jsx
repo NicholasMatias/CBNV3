@@ -21,10 +21,31 @@ const Email = styled.a`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 2px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'linear-gradient(to right, #FFD700, #B8860B)'
+        : 'linear-gradient(to right, #FFDF00, #DAA520)'
+    };
+    transition: width 0.3s ease;
+  }
 
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
@@ -32,6 +53,31 @@ const Phone = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  padding-bottom: 2px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'linear-gradient(to right, #FFD700, #B8860B)'
+        : 'linear-gradient(to right, #FFDF00, #DAA520)'
+    };
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+
+    &::after {
+      width: 100%;
+    }
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -44,10 +90,32 @@ const SocialLinks = styled.div`
 const SocialLink = styled.a`
   color: ${({ theme }) => theme.text};
   font-size: 1.5rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 2px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'linear-gradient(to right, #FFD700, #B8860B)'
+        : 'linear-gradient(to right, #FFDF00, #DAA520)'
+    };
+    transition: width 0.3s ease;
+  }
 
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.mode === 'dark' ? '#FFD700' : '#DAA520'};
+
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
@@ -68,10 +136,10 @@ const Footer = () => {
         </Phone>
       </ContactInfo>
       <SocialLinks>
-        <SocialLink href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+        <SocialLink href="https://github.com/nicholasmatias" target="_blank" rel="noopener noreferrer">
           <FaGithub />
         </SocialLink>
-        <SocialLink href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+        <SocialLink href="https://linkedin.com/in/nicholasmatias" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
         </SocialLink>
       </SocialLinks>
