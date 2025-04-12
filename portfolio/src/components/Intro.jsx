@@ -8,6 +8,15 @@ const IntroSection = styled(SectionContainer)`
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  padding-top: 140px;
+
+  @media (max-width: 768px) {
+    padding-top: 120px;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 100px;
+  }
 `;
 
 const IntroContent = styled.div`
