@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 
 const Nav = styled.nav`
@@ -28,6 +28,7 @@ const Logo = styled(motion.div)`
 `;
 
 const LogoImage = styled.img`
+  margin-top: 10px;
   height: 100px;
   width: auto;
   transition: all 0.3s ease;
@@ -86,8 +87,77 @@ const ThemeToggle = styled(motion.button)`
   justify-content: center;
 `;
 
+const MobileMenuButton = styled(motion.button)`
+  display: none;
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.text};
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileMenu = styled(motion.div)`
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: ${({ theme }) => theme.card};
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const MobileNavLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.text};
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.background};
+  }
+`;
+
+const MobileThemeButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.text};
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.background};
+  }
+`;
+
 const Navbar = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -106,39 +176,65 @@ const Navbar = ({ theme, toggleTheme }) => {
         behavior: 'smooth'
       });
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <Nav style={{ 
-      background: scrolled 
-        ? `${theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)'}` 
-        : 'transparent' 
-    }}>
-      <Logo
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Link to="/" onClick={(e) => handleNavClick(e, '/')}>
-          <LogoImage 
-            src="/CBN_Transparent.png" 
-            alt="CBN Logo"
-          />
-        </Link>
-      </Logo>
-      <NavLinks>
-        <NavLink to="/" onClick={(e) => handleNavClick(e, '/')}>Home</NavLink>
-        <NavLink to="/projects" onClick={(e) => handleNavClick(e, '/projects')}>Projects</NavLink>
-        <NavLink to="/contact" onClick={(e) => handleNavClick(e, '/contact')}>Contact</NavLink>
-        <ThemeToggle
-          onClick={toggleTheme}
-          whileHover={{ scale: 1.1 }}
+    <>
+      <Nav style={{ 
+        background: scrolled 
+          ? `${theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)'}` 
+          : 'transparent' 
+      }}>
+        <Logo
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link to="/" onClick={(e) => handleNavClick(e, '/')}>
+            <LogoImage 
+              src="/CBN_Transparent.png" 
+              alt="CBN Logo"
+            />
+          </Link>
+        </Logo>
+        <NavLinks>
+          <NavLink to="/" onClick={(e) => handleNavClick(e, '/')}>Home</NavLink>
+          <NavLink to="/projects" onClick={(e) => handleNavClick(e, '/projects')}>Projects</NavLink>
+          <NavLink to="/contact" onClick={(e) => handleNavClick(e, '/contact')}>Contact</NavLink>
+          <ThemeToggle
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </ThemeToggle>
+        </NavLinks>
+        <MobileMenuButton
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           whileTap={{ scale: 0.9 }}
         >
-          {theme === 'light' ? <FaMoon /> : <FaSun />}
-        </ThemeToggle>
-      </NavLinks>
-    </Nav>
+          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </MobileMenuButton>
+      </Nav>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <MobileMenu
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <MobileNavLink to="/" onClick={(e) => handleNavClick(e, '/')}>Home</MobileNavLink>
+            <MobileNavLink to="/projects" onClick={(e) => handleNavClick(e, '/projects')}>Projects</MobileNavLink>
+            <MobileNavLink to="/contact" onClick={(e) => handleNavClick(e, '/contact')}>Contact</MobileNavLink>
+            <MobileThemeButton onClick={toggleTheme}>
+              {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            </MobileThemeButton>
+          </MobileMenu>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
