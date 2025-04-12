@@ -229,7 +229,7 @@ const projects = [
       'Implemented features like question up-voting, company tag management, and search/sort, boosting user engagement by 17%.',
       'Built a feedback system using fine-tuned text classifiers and cosine similarity to evaluate STAR method responses, improving scores by 7.34%.'
     ],
-    image: 'project_interview_me.png',
+    image: '/project_interview_me.png',
     github: 'https://github.com/NicholasMatias/InterviewMe',
     live: '',
     tech: 'React, Express, Node, Vite, Firebase Auth, and Firebase Firestore',  
@@ -243,7 +243,7 @@ const projects = [
       'Developed image-based navigation system with zoom capabilities for enhanced user experience',
       'Created a robust backend system to handle order processing and inventory management'
     ],
-    image: 'project_panda_express.png',
+    image: '/project_panda_express.png',
     github: 'https://github.com/CSCE331-Fall2024/331-Project3-1B',
     live: '',
     tech: 'React, Express, Node.js, Vite, and PostgreSQL',
@@ -256,7 +256,7 @@ const projects = [
       "Implemented user authentication, board management, and deletion functionality, associating boards with users.",
       "Developed API calls for board and card management"
     ],
-    image: 'project_kudosboard.png',
+    image: '/project_kudosboard.png',
     github: 'https://github.com/NicholasMatias/KudosBoard',
     live: '',
     tech: 'React, Express, Node.js, Vite, and PostgreSQL',
@@ -269,7 +269,7 @@ const projects = [
       "Implemented search, filter, and sorting features for movie results, allowing users to interact with and sort by name, release date, or rating.",
       "Developed responsive design with accessibility features like semantic HTML, color contrast, alt text, and font sizing for enhanced user experience."
     ],
-    image: 'project_flixster.png',
+    image: '/project_flixster.png',
     github: 'https://github.com/NicholasMatias/Flixster',
     live: 'https://flixster-335t.onrender.com/',
     tech: 'React, Express, Node.js, and PostgreSQL',
@@ -282,7 +282,7 @@ const projects = [
       "Built a playlist management system allowing users to add, edit, delete, and sort playlists by name or creator.",
       "Optimized user experience with responsive UI and real-time updates for playlist likes and song shuffle."
     ],
-    image: 'project_music_playlist_explorer.png',
+    image: '/project_music_playlist_explorer.png',
     github: 'https://github.com/NicholasMatias/Music-Playlist-Explorer',
     live: '',
     tech: 'React, Express, Node.js, and PostgreSQL',
@@ -296,7 +296,7 @@ const projects = [
       'Implemented data preprocessing pipeline for handling diverse economic indicators',
       'Created visualization tools for analyzing and presenting economic trends'
     ],
-    image: 'project_stock_prediction.png',
+    image: '/project_stock_prediction.png',
     github: 'https://github.com/NicholasMatias/RNN_LSTM_Route_For_Stock_Prediction',
     live: '',
     tech: 'TensorFlow, Keras, Python, Pandas, Matplotlib, and NumPy',
@@ -310,7 +310,7 @@ const projects = [
       'Developed scoring system to evaluate resume-job title compatibility',
       'Created user-friendly interface for resume upload and analysis'
     ],
-    image: 'project_AI_resume.png',
+    image: '/project_AI_resume.png',
     github: 'https://docs.google.com/presentation/d/1pSjG08edGk55vBeSsvZDXTT0H4TP0_rS/edit',
     live: '',
     tech: 'Python, Numpy, and Pandas',
@@ -323,7 +323,7 @@ const projects = [
       'Implemented player movement, ball physics, and scoring system',
       'Created a user-friendly interface for game play'
     ],
-    image: 'project_pong_game.png',
+    image: '/project_pong_game.png',
     github: 'https://github.com/NicholasMatias/PongGameNRM',
     live: '',
     tech: 'Python and Pygame',

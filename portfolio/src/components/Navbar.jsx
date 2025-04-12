@@ -30,6 +30,8 @@ const LogoImage = styled.img`
   height: 100px;
   width: auto;
   transition: all 0.3s ease;
+  pointer-events: none;
+  user-select: none;
 `;
 
 const NavLinks = styled.div`
