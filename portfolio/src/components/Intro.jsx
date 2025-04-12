@@ -126,6 +126,14 @@ const Intro = () => {
     threshold: 0.1,
   });
 
+  const handleResumeClick = () => {
+    window.gtag('event', 'resume_download', {
+      'event_category': 'engagement',
+      'event_label': 'Resume Download',
+      'value': 1
+    });
+  };
+
   return (
     <IntroSection id="intro">
       <IntroContent>
@@ -168,6 +176,7 @@ const Intro = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.5 }}
+            onClick={handleResumeClick}
           >
             View My Resume
           </ResumeButton>
