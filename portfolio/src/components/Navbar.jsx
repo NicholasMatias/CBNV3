@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
 
 const Nav = styled.nav`
   position: fixed;
@@ -44,7 +45,7 @@ const NavLinks = styled.div`
   }
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   color: ${({ theme }) => theme.text};
   text-decoration: none;
   font-size: 1rem;
@@ -87,6 +88,7 @@ const ThemeToggle = styled(motion.button)`
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,6 +97,16 @@ const Navbar = ({ theme, toggleTheme }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e, path) => {
+    if (location.pathname === path) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <Nav style={{ 
@@ -107,19 +119,17 @@ const Navbar = ({ theme, toggleTheme }) => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <LogoImage 
-          src="/CBN_Transparent.png" 
-          alt="CBN Logo"
-        />
+        <Link to="/" onClick={(e) => handleNavClick(e, '/')}>
+          <LogoImage 
+            src="/CBN_Transparent.png" 
+            alt="CBN Logo"
+          />
+        </Link>
       </Logo>
       <NavLinks>
-        <NavLink href="#intro">Intro</NavLink>
-        <NavLink href="#education">Education</NavLink>
-        <NavLink href="#experience">Experience</NavLink>
-        <NavLink href="#projects">Projects</NavLink>
-        <NavLink href="#leadership">Leadership</NavLink>
-        <NavLink href="#skills">Skills</NavLink>
-        <NavLink href="#hobbies">Hobbies</NavLink>
+        <NavLink to="/" onClick={(e) => handleNavClick(e, '/')}>Home</NavLink>
+        <NavLink to="/projects" onClick={(e) => handleNavClick(e, '/projects')}>Projects</NavLink>
+        <NavLink to="/contact" onClick={(e) => handleNavClick(e, '/contact')}>Contact</NavLink>
         <ThemeToggle
           onClick={toggleTheme}
           whileHover={{ scale: 1.1 }}

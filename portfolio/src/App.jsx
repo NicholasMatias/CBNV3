@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Routes, Route } from 'react-router-dom';
 import { lightTheme, darkTheme } from './styles/theme';
 import { GlobalStyles } from './styles/GlobalStyles';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
-import Intro from './components/Intro';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Leadership from './components/Leadership';
-import Skills from './components/Skills';
-import Hobbies from './components/Hobbies';
+import Home from './pages/Home';
+import ProjectsPage from './pages/Projects';
+import Contact from './pages/Contact';
 import Footer from './components/Footer';
+import useScrollToTop from './hooks/useScrollToTop';
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  useScrollToTop();
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -25,15 +24,11 @@ function App() {
       <GlobalStyles />
       <AnimatedBackground />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main>
-        <Intro />
-        <Education />
-        <Experience />
-        <Projects />
-        <Leadership />
-        <Skills />
-        <Hobbies />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
       <Footer />
     </ThemeProvider>
   );
