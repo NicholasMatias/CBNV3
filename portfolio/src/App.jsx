@@ -10,6 +10,7 @@ import ProjectsPage from './pages/Projects';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import useScrollToTop from './hooks/useScrollToTop';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -23,6 +24,7 @@ function App() {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
       <AnimatedBackground />
+      <GoogleAnalytics />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Home />} />
