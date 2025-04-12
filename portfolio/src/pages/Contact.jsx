@@ -80,6 +80,38 @@ const Contact = () => {
     threshold: 0.1,
   });
 
+  const [status, setStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: null
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ submitting: true, submitted: false, error: null });
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus({ submitting: false, submitted: true, error: null });
+        form.reset();
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      setStatus({ submitting: false, submitted: false, error: error.message });
+    }
+  };
+
   return (
     <ContactSection id="contact">
       <Title
@@ -90,14 +122,49 @@ const Contact = () => {
       >
         Contact Me
       </Title>
-      <Form action="https://api.web3forms.com/submit" method="POST">
+      <Form 
+        action="https://api.web3forms.com/submit" 
+        method="POST"
+        onSubmit={handleSubmit}
+      >
         <input type="hidden" name="access_key" value="6ccd759d-0ee9-49ae-98d8-177d71f84c9a" />
-        <input type="hidden" name="redirect" value="https://web3forms.com/success" />
         
-        <Input type="text" name="name" placeholder="Your Name" required />
-        <Input type="email" name="email" placeholder="Your Email" required />
-        <TextArea name="message" placeholder="Your Message" required />
-        <Button type="submit">Send Message</Button>
+        <Input 
+          type="text" 
+          name="name" 
+          placeholder="Your Name" 
+          required 
+          disabled={status.submitting}
+        />
+        <Input 
+          type="email" 
+          name="email" 
+          placeholder="Your Email" 
+          required 
+          disabled={status.submitting}
+        />
+        <TextArea 
+          name="message" 
+          placeholder="Your Message" 
+          required 
+          disabled={status.submitting}
+        />
+        <Button 
+          type="submit" 
+          disabled={status.submitting}
+        >
+          {status.submitting ? 'Sending...' : 'Send Message'}
+        </Button>
+        {status.submitted && (
+          <p style={{ color: 'green', textAlign: 'center', marginTop: '1rem' }}>
+            Message sent successfully!
+          </p>
+        )}
+        {status.error && (
+          <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>
+            {status.error}
+          </p>
+        )}
       </Form>
     </ContactSection>
   );
