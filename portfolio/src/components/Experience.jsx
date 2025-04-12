@@ -18,26 +18,40 @@ const Title = styled(motion.h2)`
 `;
 
 const ExperienceGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  padding: 2rem;
-  max-width: 1400px;
+  padding: 1rem;
+  max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
 `;
 
 const ExperienceCard = styled(motion.div)`
   background: ${({ theme }) => theme.card};
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 500px;
-  height: 650px;
+  width: 100%;
+  min-height: 650px;
+
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+    min-height: auto;
+  }
 `;
 
 const ExperienceIcon = styled.div`

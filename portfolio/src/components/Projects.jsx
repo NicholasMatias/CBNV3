@@ -18,43 +18,63 @@ const Title = styled(motion.h2)`
 `;
 
 const ProjectsGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  padding: 2rem;
-  max-width: 1400px;
+  padding: 1rem;
+  max-width: 1200px;
   margin: 0 auto;
-`;
+  width: 100%;
 
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+`;
+const ProjectImage = styled.img`
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  border: none;
+  padding: 1rem;
+`;
 const ProjectCard = styled(motion.div)`
   background: ${({ theme }) => theme.card};
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid ${({ theme }) => theme.border};
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: 720px;
-`;
+  min-height: 720px;
 
-const ProjectImage = styled.img`
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  border-radius: 15px;
-  border: 3px solid ${({ theme }) => theme.border};
+  @media (max-width: 768px) {
+    min-height: auto;
+  }
 `;
-
 const ImageContainer = styled.div`
   position: relative;
-  width: auto;
-  height: 250px;
+  width: 100%;
+  height: 300px;
   overflow: hidden;
   cursor: pointer;
-  margin: 10px;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.card};
+
+  @media (max-width: 768px) {
+    height: 250px;
+  }
 
   &:hover {
     .overlay {
@@ -77,6 +97,8 @@ const ImageContainer = styled.div`
   }
 `;
 
+
+
 const ImageOverlay = styled.div`
   position: absolute;
   top: 0;
@@ -94,7 +116,6 @@ const ImageOverlay = styled.div`
   align-items: center;
   opacity: 0;
   transition: all 0.3s ease;
-  border-radius: 10px;
   padding: 2rem;
   text-align: center;
 `;
