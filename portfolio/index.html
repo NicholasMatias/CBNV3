@@ -5,6 +5,16 @@
     <link rel="icon" type="image/png" href="/CBN_DarkModeLarger.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CBN, Nicholas Matias</title>
+    <script>
+      // Handle redirect from 404.html
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== window.location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z34MPX4LK"></script>
