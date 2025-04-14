@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CBN, Nicholas Matias</title>
     <script>
-      // Handle redirect from 404.html
+      // Check if coming from a redirect and restore the original path
       (function() {
-        var redirect = sessionStorage.redirect;
+        const redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
-        if (redirect && redirect !== window.location.href) {
+        if (redirect && redirect !== location.href) {
           history.replaceState(null, null, redirect);
         }
       })();
