@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
     <meta http-equiv="refresh" content="0; url=/" />
     <script>
       // Redirect back to the original path
-      const redirectTo = '/' + location.pathname.slice(1) + location.search + location.hash;
+      const redirectTo = '/' + location.pathname + location.search + location.hash;
       sessionStorage.redirect = redirectTo;
       window.location.href = '/';
     </script>
