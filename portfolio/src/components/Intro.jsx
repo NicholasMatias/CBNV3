@@ -169,6 +169,7 @@ const Intro = () => {
             I love building innovative solutions that solve real-world problems and make a positive impact. 
             With expertise in full-stack development and experience in AI, I'm always eager to take on new challenges and learn new technologies.
           </Description>
+          <div style={{ display: 'flex', textAlign: 'center', gap: '1rem', alignItems: 'center' }}>
           <ResumeButton
             href="NRM_Resume_2025_NG.pdf"
             target="_blank"
@@ -180,6 +181,14 @@ const Intro = () => {
           >
             View My Resume
           </ResumeButton>
+          <Subtitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            *Website updated as of April 2025*
+          </Subtitle>
+          </div>
         </TextContent>
       </IntroContent>
     </IntroSection>
