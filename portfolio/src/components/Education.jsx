@@ -79,14 +79,6 @@ const Education = () => {
   const education = [
     {
       school: 'Texas A&M University',
-      degree: 'M.S. in Artificial Intelligence (Fast-Track Program)',
-      duration: 'August 2026 - May 2027',
-      description: 'Fast-track program in Artificial Intelligence.',
-      relevantCoursework: '',
-      affiliations: '',
-    },
-    {
-      school: 'Texas A&M University',
       degree: 'B.S. in Computer Science, Minor in Mathematics',
       duration: 'August 2022 - May 2026',
       description: 'GPA: 3.736',
